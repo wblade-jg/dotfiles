@@ -1,0 +1,129 @@
+/* NERV / EVA-01 — EMERGENCY launcher HUD */
+configuration {
+  font: "Share Tech Mono 12";
+  modi: "drun,run,window";
+  show-icons: true;
+  icon-theme: "Papirus";
+  dpi: 0;
+  display-drun: "UNITS";
+  display-run: "EXEC";
+  display-window: "WIN";
+}
+
+/* ---- BASELAYOUT ---- */
+* {
+  bg0:        #121214;
+  bg1:        #17171b;
+  accent:     #8B00FF;   /* EVA-01 purple */
+  neon:       #39FF14;   /* EVA-01 green  */
+  alert:      #FF6600;   /* NERV orange    */
+  critical:   #FF0033;   /* NERV red       */
+  fg:         #e8e6f0;
+  selected-bg: #FF6600;
+  selected-fg: #121214;
+}
+
+window {
+  location: center;
+  width: 620px;
+  border: 2px;
+  border-color: #39FF14;
+  background-color: rgba(18, 18, 20, 0.94);
+  padding: 0px;
+  border-radius: 0;
+  children: [ mainbox ];
+}
+
+mainbox {
+  orientation: vertical;
+  spacing: 0;
+  children: [ message, inputbar, listview ];
+}
+
+/* warning strip */
+message {
+  background-color: transparent;
+}
+message textbox {
+  text-color: #FF0033;
+  font: "Share Tech Mono 11";
+}
+
+inputbar {
+  background-color: #FF6600;
+  padding: 8px 16px;
+  spacing: 12px;
+  children: [ prompt, entry ];
+}
+prompt {
+  text-color: #121214;
+  background-color: transparent;
+  font: "Share Tech Mono 12";
+  font-weight: bold;
+  letter-spacing: 2px;
+  text: "EMERGENCY / SYSTEM LOCK";
+}
+entry {
+  background-color: transparent;
+  text-color: #121214;
+  placeholder: "> COMPATIBLE UNITS AVAILABLE ...";
+  placeholder-color: rgba(18, 18, 20, 0.55);
+  font: "Share Tech Mono 12";
+  expand: true;
+  horizontal-align: 1;
+}
+
+listview {
+  lines: 10;
+  columns: 1;
+  spacing: 0;
+  padding: 8px 6px;
+  scrollbar: false;
+}
+
+element {
+  padding: 8px 12px;
+  spacing: 14px;
+  background-color: transparent;
+  text-color: #e8e6f0;
+  border: 0px;
+}
+element selected {
+  background-color: #FF6600;
+  text-color: #121214;
+}
+element selected.normal {
+  background-color: #FF6600;
+  text-color: #121214;
+}
+element-icon {
+  size: 24px;
+  background-color: transparent;
+  text-color: inherit;
+}
+element-text {
+  background-color: transparent;
+  text-color: inherit;
+  font: "Share Tech Mono 12";
+}
+
+scrollbar {
+  handle-color: #8B00FF;
+  background-color: #17171b;
+  width: 4px;
+}
+
+actions {
+  padding: 8px;
+  spacing: 6px;
+}
+button {
+  background-color: #17171b;
+  text-color: #FF6600;
+  padding: 6px 12px;
+  font-weight: bold;
+}
+button selected {
+  background-color: #8B00FF;
+  text-color: #121214;
+}

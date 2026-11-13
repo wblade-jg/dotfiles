@@ -1,0 +1,10 @@
+configuration {
+	modes: "drun,run";
+	display-drun: "Aplicaciones";
+	display-run: "Ejecutar";
+	font: "OMORI_GAME 16";
+}
+
+
+@theme "./omori.rasi"
+

@@ -1,0 +1,40 @@
+#!/bin/sh
+
+ID_FILE="/tmp/mako-brightness-id"
+
+pct() {
+  brightnessctl -m | awk -F, '{gsub(/%/, "", $4); print $4}'
+}
+
+notify() {
+  summary="$1"
+  value="$2"
+  prev_id=""
+  [ -f "$ID_FILE" ] && prev_id=$(cat "$ID_FILE")
+
+  if [ -n "$prev_id" ]; then
+    new_id=$(notify-send -p -r "$prev_id" -a "Brillo" "$summary" \
+      -i display-brightness-symbolic -h "int:value:$value")
+  else
+    new_id=$(notify-send -p -a "Brillo" "$summary" \
+      -i display-brightness-symbolic -h "int:value:$value")
+  fi
+  echo "$new_id" > "$ID_FILE"
+}
+
+down() {
+  brightnessctl -e4 -n2 set 5%-
+  p=$(pct)
+  notify "Brillo: $p%" "$p"
+}
+
+up() {
+  brightnessctl -e4 -n2 set +5%
+  p=$(pct)
+  notify "Brillo: $p%" "$p"
+}
+
+case "$1" in
+  up) up ;;
+  down) down ;;
+esac

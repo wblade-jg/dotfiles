@@ -1,0 +1,47 @@
+// NERV / EVA-01 launcher dock (vertical, left edge)
+{
+  "layer": "top",
+  "position": "left",
+  "width": 56,
+  "spacing": 8,
+  "margin": "4 0 4 4",
+  "modules-left": [
+    "custom/firefox",
+    "custom/dolphin",
+    "custom/nvim",
+    "custom/audio",
+    "custom/power"
+  ],
+
+  "custom/firefox": {
+    "format": "\uf269",
+    "tooltip": "FIREFOX",
+    "on-click": "firefox",
+    "interval": 30
+  },
+  "custom/dolphin": {
+    "format": "\uf07c",
+    "tooltip": "DOLPHIN",
+    "on-click": "dolphin",
+    "interval": 30
+  },
+  "custom/nvim": {
+    "format": "\uf120",
+    "tooltip": "NVIM [kitty]",
+    "on-click": "kitty -e nvim",
+    "interval": 30
+  },
+  "custom/audio": {
+    "format": "\uf028",
+    "tooltip": "TOGGLE AUDIO",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "kitty -e wpctl status",
+    "interval": 30
+  },
+  "custom/power": {
+    "format": "\uf011",
+    "tooltip": "SHUTDOWN",
+    "on-click": "wlogout",
+    "interval": 30
+  }
+}

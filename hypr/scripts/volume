@@ -1,0 +1,59 @@
+#!/bin/sh
+
+sink="@DEFAULT_AUDIO_SINK@"
+ID_FILE="/tmp/mako-volume-id"
+
+vol() {
+  wpctl get-volume "$sink" | awk '{printf "%d\n", $2*100}'
+}
+
+notify() {
+  summary="$1"
+  icon="$2"
+  value="$3"
+  prev_id=""
+  [ -f "$ID_FILE" ] && prev_id=$(cat "$ID_FILE")
+
+  if [ -n "$value" ]; then
+    hints="-h int:value:$value"
+  else
+    hints=""
+  fi
+
+  if [ -n "$prev_id" ]; then
+    new_id=$(notify-send -p -r "$prev_id" -a "Volume" "$summary" \
+      -i "$icon" $hints)
+  else
+    new_id=$(notify-send -p -a "Volume" "$summary" \
+      -i "$icon" $hints)
+  fi
+  echo "$new_id" > "$ID_FILE"
+}
+
+down() {
+  wpctl set-volume "$sink" 2%-
+  v=$(vol)
+  notify "Volumen: $v%" "audio-volume-low-symbolic" "$v"
+}
+
+up() {
+  wpctl set-volume -l 1 "$sink" 2%+
+  v=$(vol)
+  notify "Volumen: $v%" "audio-volume-high-symbolic" "$v"
+}
+
+mute() {
+  if wpctl get-volume "$sink" | grep -q MUTED; then
+    wpctl set-mute "$sink" 0
+    notify "Volumen: activado" "audio-volume-high-symbolic" ""
+  else
+    wpctl set-mute "$sink" 1
+    notify "Silenciado" "audio-volume-muted-symbolic" ""
+  fi
+}
+
+case "$1" in
+  up) up;;
+  down) down;;
+  mute) mute;;
+esac

@@ -1,0 +1,10 @@
+# Neovim — plugins manejados por lazy.nvim (se restauran con :Lazy sync)
+nvim/pack/
+
+# Archivos de sesión / swap
+*.swp
+*.swo
+.DS_Store
+
+# Imagen decorativa pesada de waybar (no es config)
+waybar/kali-emblem.jpg

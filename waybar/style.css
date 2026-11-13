@@ -1,0 +1,131 @@
+* {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+  text-shadow: none;
+  background: transparent;
+  color: #1e1e1e;
+}
+
+window#waybar {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+window#waybar > box {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+}
+
+.modules-left,
+.modules-right,
+.modules-center {
+  margin: 0 10px;
+}
+
+#workspaces {
+  margin: 0;
+  padding: 0;
+}
+
+#cpu,
+#memory {
+  margin: 0 6px;
+  padding: 0;
+  color: #1e1e1e;
+}
+
+#cpu:hover,
+#memory:hover {
+  color: #000000;
+}
+
+#workspaces button {
+  color: #7c7c7c;
+  padding: 0 4px;
+  margin: 0 2px;
+  background: transparent;
+  border-radius: 0px;
+}
+
+#workspaces button.active {
+  color: #000000;
+  font-weight: 900;
+}
+
+#workspaces button:hover {
+  color: #000000;
+}
+
+#clock {
+  color: #000000;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+#tray,
+#language,
+#pulseaudio,
+#backlight,
+#battery,
+#network,
+#custom-power-menu {
+  margin: 0 6px;
+  padding: 0;
+  color: #1e1e1e;
+}
+
+#pulseaudio:hover,
+#backlight:hover,
+#battery:hover,
+#network:hover,
+#language:hover {
+  color: #000000;
+}
+
+#battery.critical:not(.charging) {
+  color: #000000;
+  animation: blink 0.5s steps(2) infinite alternate;
+}
+
+#network.disconnected,
+#pulseaudio.muted {
+  color: #868686;
+}
+
+#custom-power-menu {
+  color: #1e1e1e;
+}
+
+#custom-power-menu:hover {
+  color: #000000;
+}
+
+tooltip {
+  background-color: #C2C2C2;
+  border: 2px solid #000000;
+  border-radius: 0px;
+  box-shadow: 3px 3px 0px #000000;
+}
+
+tooltip label {
+  color: #000000;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  to {
+    color: #AEAEAE;
+  }
+}
